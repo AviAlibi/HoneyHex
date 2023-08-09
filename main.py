@@ -103,6 +103,7 @@ def main():
 \__/  \__/  \__/  \__/  \__/  \__/  
 ''')
             time.sleep(3)
+            firstStart = False
         os.system('cls' if os.name == 'nt' else 'clear')
         
         print('''
