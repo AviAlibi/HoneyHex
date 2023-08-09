@@ -24,7 +24,7 @@ def generate_key():
 
     print('Generating key...')
     key = Fernet.generate_key()
-    print('Key:', key.decode())
+    print('Key:', Fore.BLACK + Back.GREEN + key.decode() + Fore.YELLOW + Back.BLACK)
     print('''
     Warning: Store this key in a safe place.
     Losing this key means you cannot decrypt the data.
