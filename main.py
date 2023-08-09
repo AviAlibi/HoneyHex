@@ -2,6 +2,8 @@ import os
 from cryptography.fernet import Fernet
 from cryptography.fernet import InvalidToken
 import base64
+import time
+from colorama import Fore, Back
 
 def is_valid_fernet_key(key):
     try:
@@ -11,7 +13,7 @@ def is_valid_fernet_key(key):
         return False
 
 def generate_key():
-    response = input('WARNING: Generating a new key will clear all passwords from passwords.txt. Do you want to continue? (yes/no): ')
+    response = input(Fore.RED + 'WARNING: Generating a new key will clear all passwords from passwords.txt. Do you want to continue? (yes/no): ' + Fore.YELLOW)
     if response.lower() != 'yes':
         print('Key generation cancelled.')
         input('Press enter to return to the main menu...')
@@ -85,8 +87,22 @@ def decrypt_data():
             del key
     input('Press enter to return to the main menu...')
 
+
 def main():
-    while True:
+    while True:       
+        if firstStart:
+            print(Fore.YELLOW + Back.BLACK +
+'''
+/  \__/  \__/  \__/  \__/  \__/  \__
+\__/  \__/  \__/  \__/  \__/  \__/  
+/  \__/  \__/  \__/  \__/  \__/  \__
+\__/  \__/  \_            _/  \__/  
+/  \__/  \__/   HoneyHex   \__/  \__
+\__/  \__/  \_            _/  \__/  
+/  \__/  \__/  \__/  \__/  \__/  \__
+\__/  \__/  \__/  \__/  \__/  \__/  
+''')
+            time.sleep(3)
         os.system('cls' if os.name == 'nt' else 'clear')
         
         print('''
@@ -111,6 +127,8 @@ def main():
         else:
             print("Invalid option. Please choose a number between 1 and 4.")
             input('Press enter to continue...')
+
+firstStart = True
 
 if __name__ == "__main__":
     main()
