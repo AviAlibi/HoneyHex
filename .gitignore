@@ -1,0 +1,7 @@
+passwords.txt
+main.spec
+keyGenerator.py
+encryption.py
+decryption.py
+/dist
+/build
