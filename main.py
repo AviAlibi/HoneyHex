@@ -89,6 +89,7 @@ def decrypt_data():
 
 
 def main():
+    firstStart = True
     while True:       
         if firstStart:
             print(Fore.YELLOW + Back.BLACK +
@@ -128,8 +129,5 @@ def main():
         else:
             print("Invalid option. Please choose a number between 1 and 4.")
             input('Press enter to continue...')
-
-firstStart = True
-
 if __name__ == "__main__":
     main()
