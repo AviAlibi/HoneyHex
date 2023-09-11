@@ -4,6 +4,8 @@ from cryptography.fernet import InvalidToken
 import base64
 import time
 from colorama import Fore, Back
+import tkinter as tk
+from tkinter import filedialog
 
 def is_valid_fernet_key(key):
     try:
@@ -32,6 +34,9 @@ def generate_key():
     input('Press enter to return to the main menu...')
 
 def encrypt_data():
+    passwordFile = filedialog.askopenfile()
+    print(passwordFile.name)
+    
     key = input('Please paste in your encryption key: ')
     os.system('cls' if os.name == 'nt' else 'clear')
 
@@ -45,17 +50,18 @@ def encrypt_data():
     plainText = input('Text: ')
     cipherText = f.encrypt(plainText.encode('utf-8'))
     
-    print("CipherText:", cipherText.decode('utf-8'))
-    
-    with open("passwords.txt", "a") as file:
-        file.write(cipherText.decode('utf-8') + "\n")
-    print("Encrypted data has been appended to passwords.txt")
+    # print("CipherText:", cipherText.decode('utf-8'))
+    with open(passwordFile.name, 'a') as f:
+        f.write(cipherText.decode('utf-8') + "\n")
+
+    print(f"Encrypted data has been appended to {passwordFile.name}")
     
     del key
     input('Press enter to return to the main menu...')
 
 def decrypt_data():
     try:
+        passwordFile = filedialog.askopenfile()
         key = input('Please paste in your encryption key: ')
         os.system('cls' if os.name == 'nt' else 'clear')
 
@@ -67,8 +73,7 @@ def decrypt_data():
         f = Fernet(key)
 
         # Reading the encrypted data from the file
-        with open("passwords.txt", "r") as file:
-            lines = file.readlines()
+        lines = passwordFile.readlines()
 
         # Decrypting each line individually
         for line in lines:
